@@ -15,8 +15,11 @@
                 <input
                     class="form-check-input"
                     type="radio"
+                    value="M"
+                    [(ngModel)]="persona.genero"
                     name="radioGenero"
-                    id="radioMasculino">
+                    id="radioMasculino"
+                    required>
                 <label 
                     class="form-check-label"
                     for="radioMasculino">
@@ -28,8 +31,11 @@
                 <input
                     class="form-check-input"
                     type="radio"
+                    value="F"
+                    [(ngModel)]="persona.genero"
                     name="radioGenero"
-                    id="radioFemenino">
+                    id="radioFemenino"
+                    required>
                 <label
                     class="form-check-label"
                     for="radioFemenino">
@@ -49,10 +55,12 @@
 
         <div class="col-sm-9">
 
-            <div class="form-check form-switch">
+            <div class="form-check form-switch mt-2">
                 <input
                     class="form-check-input"
                     type="checkbox"
+                    [(ngModel)]="persona.notificaciones"
+                    name="notificaciones"
                     role="switch"
                     id="flexSwitchCheckChecked"
                     checked>
@@ -67,7 +75,7 @@
 
     </div>
 
-    <!-- Switches -->
+    <!-- Checks -->
 
     <div class="row mb-3">
 
@@ -79,7 +87,10 @@
                 <input
                     class="form-check-input"
                     type="checkbox"
-                    id="flexCheckDefault">
+                    name="terminos"
+                    [(ngModel)]="terminosYCondiciones"
+                    id="flexCheckDefault"
+                    required>
                 <label
                     class="form-check-label"
                     for="flexCheckDefault">
@@ -95,10 +106,27 @@
 
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button
+                class="btn btn-primary float-end"
+                [disabled]="miFormulario.invalid">
                 Guardar
             </button>
         </div>
     </div>
 
 </form>
+
+<h5>Valor del formulario</h5>
+<pre>{{ miFormulario.value | json }}</pre>
+
+<h5>Persona</h5>
+<pre>{{ persona | json }}</pre>
+
+<h5>Valid</h5>
+<pre>{{ miFormulario.valid }}</pre>
+
+<h5>Términos</h5>
+<pre>{{ miFormulario.controls['terminos']?.errors | json }}</pre>
+
+<br>
+<pre>Condiciones:</pre>
